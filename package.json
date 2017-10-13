@@ -1,0 +1,39 @@
+{
+  "name": "inerc",
+  "version": "0.0.1",
+  "description": "\"Тестовое задание для Latoken\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=development nodemon --watch server --exec babel-node -- server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inerc/Latoken.git"
+  },
+  "keywords": [
+    "Latoken",
+    "Work",
+    "Inerc"
+  ],
+  "author": "Inerc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/inerc/Latoken/issues"
+  },
+  "homepage": "https://github.com/inerc/Latoken#readme",
+  "dependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-runtime": "^6.11.6",
+    "babel-watch": "^2.0.4",
+    "express": "^4.16.2",
+    "http": "0.0.0",
+    "mysql2": "^1.4.2",
+    "sequelize": "^4.13.10"
+  }
+}
