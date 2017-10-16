@@ -1,7 +1,10 @@
 import Sequelize from 'sequelize';
 import config from '../config'
 
-const sequelize = new Sequelize(config.get('database:db'), config.get('database:user'), config.get('database:password'), {
+const sequelize = new Sequelize(
+    config.get('database:db'),
+    config.get('database:user'),
+    config.get('database:password'), {
     host: config.get('database:host'),
     dialect: 'mysql',
     pool: {
@@ -14,4 +17,4 @@ const sequelize = new Sequelize(config.get('database:db'), config.get('database:
     }
 });
 
-export default sequelize
+export default sequelize;

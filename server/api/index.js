@@ -1,4 +1,7 @@
+import {post} from './label/post';
+import {get} from './label/get';
+
 module.exports = (app) => {
-    app.post('/label/', require('./label/post').post);
-    app.get('/label/', require('./label/get').get);
+    app.post('/label/', post);
+    app.get('/label/', get);
 };
