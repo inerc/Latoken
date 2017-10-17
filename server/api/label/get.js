@@ -1,12 +1,9 @@
 import sequelize from '../../db/connection';
-import Languages from '../../models/language';
+import Label from '../../models/label';
 
 export const get = (req, res, next) => {
-    Languages.create({
-        name: "Mon",
-        isMainLanguage: true
+    Label.findAll()
+        .then(labels => {
+        res.send(labels)
     })
-        .then(result => {
-            res.send(result)
-        })
 };
