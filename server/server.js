@@ -14,13 +14,14 @@ const compiler = webpack(webpackConfig);
 
 let app = express();
 let server = http.createServer(app);
-api(app);
 
 app.use('/static', express.static(__dirname + '/static'));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(cookieParser());
 app.use(webpackMiddleware(compiler,{hot: true, publicPath: webpackConfig.output.publicPath, noInfo:true}));
 app.use(webpackHotMiddleware(compiler));
+
+api(app);
 
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, './index.html'));

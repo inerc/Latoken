@@ -23,17 +23,6 @@ class TableStore {
             });
     }
 
-    toJS() {
-        debugger
-        return this.labels.map(label => label.toJS());
-    }
-
-    static fromJS(array) {
-        const labelStore = new LabelStore();
-        labelStore.labels = array.map(label => TodoModel.fromJS(todoStore, item));
-        return todoStore;
-    }
-
 
     constructor() {
         this.show = false;

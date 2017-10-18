@@ -1,8 +1,9 @@
 import React from 'react';
-import { Table, FieldGroup } from 'react-bootstrap';
+import { Table, FieldGroup, ButtonToolbar, Button } from 'react-bootstrap';
 import {observer} from 'mobx-react';
 import { action } from 'mobx';
 import TableStore from '../store/TableStore';
+import DevTools from 'mobx-react-devtools';
 
 @observer
 class appTable extends React.Component {
@@ -14,28 +15,30 @@ class appTable extends React.Component {
 
 
     getTableBody() {
-        return (
-            <tbody>
+     return   TableStore.labels.map(label => {
+            return (
                 <tr>
-                    <td>1</td>
-                    <td><input /></td>
+                    <td>{label.id}</td>
+                    <td><input value={label.key} /></td>
                     <td>
-                        <select defaultValue={'EN'}>
+                        <select defaultValue={label.languageId}>
                             <option selected >EN</option>
                             <option>RU</option>
                             <option>IT</option>
                         </select>
                     </td>
-                    <td> <input /> </td>
-                    <td>@mdo</td>
+                    <td> <input  value={label.value}/> </td>
+                    <td>{label.editTimestamp}</td>
                 </tr>
-            </tbody>
-        )
+            )
+        });
     }
 
 
     render() {
         return (
+            <div>
+                <DevTools />
             <Table striped bordered condensed hover>
                     <thead>
                     <tr>
@@ -46,8 +49,15 @@ class appTable extends React.Component {
                         <th>time</th>
                     </tr>
                     </thead>
+                <tbody>
                     {this.getTableBody()}
+                </tbody>
                 </Table>
+
+                {/*<Button onClick={TableStore.labels.push({})} bsStyle="primary" bsSize="large">Add row</Button>*/}
+
+            </div>
+
         )
     }
 }
