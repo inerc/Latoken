@@ -1,8 +1,8 @@
-import Table from './components/appTable';
+import App from './components/App';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 const app = document.getElementById("app");
 
-ReactDOM.render(<Table />, app);
+ReactDOM.render(<App/>, app);
 

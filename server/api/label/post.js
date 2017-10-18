@@ -2,17 +2,36 @@ import Label from '../../models/label';
 
 exports.post =  (req, res, next) => {
 
-    let {data, values} = req.body;
+    let {key,languageId } = req.body;
+    console.log(req.body)
+    console.log(key, languageId)
 
-    Label.findOne({ where: data})
+    Label.findOne({ where: {key: key, languageId: languageId}})
         .then((obj) => {
+        console.log(obj)
             if(obj) { // update
-                res.send('Update');
-                return obj.update(values);
+                    obj.update(req.body)
+                        .then((result, data) => {
+                            res.send(JSON.stringify({
+                                status: 'update',
+                                result: result,
+                                data: data
+                            }))
+                        })
             }
             else { // insert
-                res.send('insert')
-                return Label.create(values);
+                     Label.create(req.body, {
+                         returning: true,
+                         plain: true})
+                         .then(() => {
+                            Label.findOne({where: req.body})
+                                .then(forReturn => {
+                                    res.send(JSON.stringify({
+                                        status: 'insert',
+                                        result: forReturn
+                                    }))
+                                })
+                         })
             }
         })
 
