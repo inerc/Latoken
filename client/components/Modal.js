@@ -13,7 +13,6 @@ class ModalComponent extends React.Component {
         };
     };
 
-
     getLanguagesOption() {
         return languageStore.languages.map(language => {
             return (

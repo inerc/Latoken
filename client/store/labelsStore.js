@@ -32,21 +32,14 @@ class TableStore {
             .then((result) => {
                 switch (result.status) {
                     case 'insert':
-                        debugger
                         this.labels.push(result.result);
-                        console.log(result.status);
                         break;
                     case 'update':
-                        debugger
                         this.labels = this.labels.map((label) => {
-                            debugger
                             if (label.id === result.result.id){
                                 return result.result;
                             }else return label
                         });
-debugger
-                        this.labels
-                        console.log(result.status);
                 }
             })
             .catch(response => {

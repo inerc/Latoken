@@ -1,4 +1,3 @@
-import sequelize from '../../db/connection';
 import Label from '../../models/label';
 
 export const get = (req, res, next) => {
