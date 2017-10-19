@@ -5,7 +5,8 @@ class ModalStore {
         showModal: false,
         data: {
             value: '',
-            key: ''
+            key: '',
+            languageId: 'EN'
         }
     };
 

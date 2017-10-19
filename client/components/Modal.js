@@ -26,7 +26,7 @@ class ModalComponent extends React.Component {
     };
 
     handleAddLable = () => {
-        labelsStore.addLabel(this.state);
+        labelsStore.addLabel(modalStore.modal.data);
     };
 
     handleChange = (event) => {
