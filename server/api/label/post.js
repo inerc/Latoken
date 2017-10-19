@@ -10,11 +10,10 @@ exports.post = (req, res) => {
         .then((obj) => {
             if (obj) { // update
                 obj.update(data)
-                    .then((result, data) => {
+                    .then((result) => {
                         res.send(JSON.stringify({
                             status: 'update',
-                            result: result,
-                            data: data
+                            data: result,
                         }))
                     })
             }
@@ -28,7 +27,7 @@ exports.post = (req, res) => {
                             .then(forReturn => {
                                 res.send(JSON.stringify({
                                     status: 'insert',
-                                    result: forReturn
+                                    data: forReturn
                                 }))
                             })
                     })

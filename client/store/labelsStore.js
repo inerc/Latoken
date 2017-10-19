@@ -1,4 +1,5 @@
 import {observable, computed, reaction, action} from 'mobx';
+import modalStore from '../store/modalStore';
 import 'isomorphic-fetch'
 
 class TableStore {
@@ -32,15 +33,19 @@ class TableStore {
             .then((result) => {
                 switch (result.status) {
                     case 'insert':
-                        this.labels.push(result.result);
+                        this.labels.push(result.data);
                         break;
                     case 'update':
                         this.labels = this.labels.map((label) => {
-                            if (label.id === result.result.id){
-                                return result.result;
-                            }else return label
+                            if (label.id === result.data.id) {
+                                return result.data;
+                            } else {
+                                return label;
+                            }
                         });
+                        break;
                 }
+                modalStore.close();
             })
             .catch(response => {
                 return {error: response}

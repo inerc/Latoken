@@ -10,7 +10,7 @@ class LanguagesStore {
                 return response.json()
             })
             .then(result => {
-               this.languages = result;
+                this.languages = result;
             })
             .catch(response => {
                 return {error: response}

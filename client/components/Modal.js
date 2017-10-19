@@ -2,7 +2,11 @@ import React from 'react';
 import {Modal, Button, FormGroup, FormControl, ControlLabel} from 'react-bootstrap';
 import languageStore from '../store/languagesStore';
 import labelsStore from '../store/labelsStore';
+import modalStore from '../store/modalStore';
+import {observer} from 'mobx-react';
 
+
+@observer
 class ModalComponent extends React.Component {
 
 
@@ -22,20 +26,17 @@ class ModalComponent extends React.Component {
     };
 
     handleAddLable = () => {
-        labelsStore.addLabel(this.state)
+        labelsStore.addLabel(this.state);
     };
 
     handleChange = (event) => {
-        this.setState({
-            ...this.state,
-            [event.target.name]: event.target.value
-        })
+        modalStore.modal.data[event.target.name] = event.target.value;
     };
 
     render() {
         return (
-            <Modal show={this.props.showModal} onHide={this.props.close}>
-                <Modal.Header closeButton>
+            <Modal show={modalStore.modal.showModal}>
+                <Modal.Header closeButton onClick={() => modalStore.close()}>
                     <Modal.Title>Enter the data</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -47,6 +48,7 @@ class ModalComponent extends React.Component {
                             type="text"
                             placeholder="Enter unique key"
                             name="key"
+                            value={modalStore.modal.data.key}
                             onChange={this.handleChange}
                         />
                     </FormGroup>
@@ -67,13 +69,14 @@ class ModalComponent extends React.Component {
                             componentClass="textarea"
                             placeholder="Enter value"
                             name="value"
+                            value={modalStore.modal.data.value}
                             onChange={this.handleChange}
                         />
                     </FormGroup>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={this.handleAddLable}>Add</Button>
-                    <Button onClick={this.props.close}>Close</Button>
+                    <Button bsStyle="info" onClick={this.handleAddLable}>Save</Button>
+                    <Button onClick={() => modalStore.close()}>Close</Button>
                 </Modal.Footer>
             </Modal>
 
