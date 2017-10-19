@@ -23,7 +23,7 @@ class Footer extends React.Component {
         return (
             <div>
                 <Button onClick={() => this.open()} bsStyle="primary" bsSize="large">Add row</Button>
-                <Modal showModal={this.state.showModal} close={this.close.bind(this)} open={this.open.bind(this)}/>
+                <Modal showModal={this.state.showModal} close={() => this.close()} open={() => this.open()}/>
             </div>
 
         )

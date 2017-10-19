@@ -16,12 +16,12 @@ class TableComponent extends React.Component {
         };
     }
 
+
     close() {
         this.setState({showModal: false});
     }
 
-    open(id) {
-        debugger
+    open() {
         this.setState({showModal: true});
     }
 
@@ -108,7 +108,7 @@ class TableComponent extends React.Component {
                 {this.getTableBody()}
                 </tbody>
             </Table>
-                <Modal id={this.state.id} showModal={this.state.showModal} close={this.close.bind(this)} open={this.open.bind(this)}/>
+                <Modal id={this.state.id} showModal={this.state.showModal} close={() => this.close()} open={() => this.open()}/>
             </div>
 
         )
